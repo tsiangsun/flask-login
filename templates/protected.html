@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Protected page - Flask login example{% endblock %}
+
+{% block page_content %}
+<div id="about" class="container-fluid text-center">
+    <h1>Private page</h1>
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-4 col-xs-12">
+            This page is protected, you are logged in as {{ curr_user.username | safe }}
+        </div>
+    </div>
+</div>
+{% endblock %}

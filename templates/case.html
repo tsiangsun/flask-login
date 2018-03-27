@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Case - Flask login example{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">            
+            <div class="navbar-header">
+              <a class="navbar-brand" href="{{ url_for('index') }}">
+                        Index
+              </a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="{{ url_for('public') }}">Public</a></li>
+                <li><a href="{{ url_for('protected') }}">Protected</a></li>
+            </ul>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#result">RESULT</a></li>
+                <li>
+                    {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('logout') }}">Logout</a>
+                    {% else %}
+                        <a href="{{ url_for('login') }}">Login</a>
+                    {% endif %}
+                </li>
+              </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+
+{% block page_content %}
+      
+<!-- Container (Result Section) -->
+<div id="result" class="container-fluid text-center">
+  <div class="row">
+    <div class="col-sm-12 col-xs-12" align="center">
+	  <h2>Here you go</h2> 
+      <h3>CASE ID you requestetd is {{ caseid | safe }} </h3>
+    </div>
+  </div>
+</div>
+    
+  
+<div class="container-fluid text-center">
+    <form class="form-inline" id='input' method='post' action='case'>	
+                <div class="form-group">
+                    <label for="caseid">Search Case ID </label>
+                    <input type="caseid" class="form-control" id="caseid" name="caseid">
+                </div>
+                <button type="submit">Submit</button>
+    </form>
+</div>  
+
+{% endblock %}
+

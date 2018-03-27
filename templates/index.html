@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Index - Flask login example{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="container">            
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                        
+              </button>
+              <a class="navbar-brand" href="{{ url_for('index') }}">
+                        Index
+              </a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="{{ url_for('public') }}">Public</a></li>
+                <li><a href="{{ url_for('protected') }}">Protected</a></li>
+            </ul>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#getcase">GET CASE</a></li>
+                <li>
+                    {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('logout') }}">Logout</a>
+                    {% else %}
+                        <a href="{{ url_for('login') }}">Login</a>
+                    {% endif %}
+                </li>
+              </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+
+
+
+
+{% block page_content %}
+
+<div id="about" class="container-fluid text-center">
+  <h1>Welcome to the homepage </h1> 
+  <h3> This is the minimal demo for flask login function</h3> 
+</div>
+
+
+<!-- Container (Get case Section) -->
+<div id="getcase" class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+      <div class="panel panel-default text-center">
+        <div class="panel-heading">
+            <h1>Get a case</h1>
+        </div>
+        <div class="panel-body"> 
+            <form class="form-horizontal" id='input' method='post' action='case'>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="caseid">Case ID :</label>
+                    <div class="control-label col-sm-8">
+                        <input type="caseid" class="form-control" id="caseid" name="caseid">
+                    </div>
+                </div>
+                <div class="panel-footer"> 
+                    <button class="btn btn-lg" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+
+      </div>      
+    </div>     
+    
+  </div>
+</div>
+
+<footer class="container-fluid text-center">
+  <a href="#myPage" title="To Top">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a>
+  <p>Back to Top</p>
+</footer>
+
+{% endblock %}
+
+
+
+ 
+    
+    
+
+
+
+
